@@ -6,9 +6,4 @@
   tasks:
     - name:
       hello_world_module:
-        source: "./README.md"
-        dest: "./README.md.copy"
-    
-    - debug:
-        var: rc_dest
-    
+        name: testtest
