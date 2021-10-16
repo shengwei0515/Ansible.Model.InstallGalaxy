@@ -1,0 +1,30 @@
+- name: Test library/install_galaxy_collection
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: run library/install_galaxy
+      install_galaxy_collection:
+        name: "{{ item.name }}"
+        src: git@github.com:netbox-community/ansible_modules.git
+        src_type: git-ssh
+        version: "{{ item.version }}"
+        fource: yes
+        installed_root_path: "./.ansible"
+        skip_versions:
+          - "develop"
+          - ""
+      with_items:
+        - { name: "test_collection_1", version: "devel" }
+        - { name: "test_collection_1", version: "" }
+        - { name: "test_collection_1", version: "develop" }
+        - { name: "test_collection_2", version: "develop-2" }
+
+    # - name: FET for src_type
+    #   install_galaxy_collection:
+    #     name: test
+    #     src: git@github.com:netbox-community/ansible_modules.git
+    #     src_type: not_in_supported_src_type
+    #     version: devel
+    #     fource: yes
+    #     installed_root_path: "./.ansible"
