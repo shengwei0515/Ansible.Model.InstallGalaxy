@@ -1,0 +1,14 @@
+- name: test my module
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name:
+      hello_world_module:
+        source: "./README.md"
+        dest: "./README.md.copy"
+    
+    - debug:
+        var: rc_dest
+    
